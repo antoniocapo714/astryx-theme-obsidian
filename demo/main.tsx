@@ -23,6 +23,7 @@ import {Table} from '@astryxdesign/core/Table';
 
 import {obsidianTheme} from '../themes/obsidian/obsidian.js';
 import {ReadmeBanner} from './ReadmeBanner';
+import {ColumnChart, Heatmap, LineChart} from './charts';
 
 /**
  * The theme's showcase. The side navigation is the page's own table of
@@ -53,7 +54,7 @@ const REPO = 'https://github.com/antoniocapo714/astryx-theme-obsidian';
 const SECTIONS = [
   {group: 'Foundations', id: 'colors', label: 'Colors'},
   {group: 'Foundations', id: 'typography', label: 'Typography'},
-  {group: 'Foundations', id: 'data', label: 'Data colors'},
+  {group: 'Foundations', id: 'data', label: 'Data visualization'},
   {group: 'Components', id: 'buttons', label: 'Buttons'},
   {group: 'Components', id: 'cards', label: 'Cards'},
   {group: 'Components', id: 'forms', label: 'Form controls'},
@@ -175,7 +176,7 @@ function Showcase() {
           header={
             <div className="demo-brand">
               <Text type="label">Obsidian</Text>
-              <Text type="supporting">Astryx theme · 0.1.0</Text>
+              <Text type="supporting">Astryx theme · 0.2.0</Text>
             </div>
           }
           footer={<SideNavItem label="View on GitHub" href={REPO} />}>
@@ -251,23 +252,44 @@ function Showcase() {
 
         <Section
           id="data"
-          title="Data colors"
-          note="The chart colors Astryx provides, as this version ships them: Astryx's own dark defaults, not yet tuned for this theme.">
-          <Text type="label">Categorical</Text>
+          title="Data visualization"
+          note="Chart colors fitted to this dark body and tested for colour-blind readers. Use the categorical colors in this order; every word in a chart uses text tokens.">
+          <Text type="label">Categorical, in order</Text>
           <div className="demo-data-row">
-            {CATEGORICAL.map((c) => (
-              <div key={c} className="demo-data-chip" style={{background: `var(--color-data-categorical-${c})`}} title={c} />
+            {CATEGORICAL.map((c, i) => (
+              <div key={c} className="demo-data-slot">
+                <div className="demo-data-chip" style={{background: `var(--color-data-categorical-${c})`}} />
+                <Text type="supporting">
+                  {i + 1} · {c}
+                </Text>
+              </div>
             ))}
           </div>
           <Text type="label">Sequential ramps</Text>
           <div className="demo-ramps">
             {RAMPS.map((r) => (
-              <div key={r} className="demo-ramp">
-                {[1, 2, 3, 4, 5].map((step) => (
-                  <div key={step} style={{background: `var(--color-data-${r}-${step})`}} title={`${r}-${step}`} />
-                ))}
+              <div key={r} className="demo-data-slot">
+                <div className="demo-ramp">
+                  {[1, 2, 3, 4, 5].map((step) => (
+                    <div key={step} style={{background: `var(--color-data-${r}-${step})`}} />
+                  ))}
+                </div>
+                <Text type="supporting">{r}</Text>
               </div>
             ))}
+          </div>
+          <div className="demo-charts">
+            <Card padding={4}>
+              <LineChart />
+            </Card>
+            <div className="demo-grid-2">
+              <Card padding={4}>
+                <ColumnChart />
+              </Card>
+              <Card padding={4}>
+                <Heatmap />
+              </Card>
+            </div>
           </div>
         </Section>
 

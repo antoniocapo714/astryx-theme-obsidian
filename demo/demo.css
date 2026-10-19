@@ -12,7 +12,7 @@ body {
 }
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 24px;
+  scroll-padding-top: var(--spacing-6);
 }
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -23,68 +23,68 @@ html {
 /* ---- Showcase layout ---- */
 .demo-page {
   display: grid;
-  gap: 56px;
-  padding: 40px 40px 96px;
+  gap: var(--spacing-12);
+  padding: var(--spacing-10) var(--spacing-10) calc(var(--spacing-12) * 2);
   max-width: 1040px;
 }
 .demo-hero {
   display: grid;
-  gap: 16px;
+  gap: var(--spacing-4);
   max-width: 720px;
 }
 .demo-install {
   margin: 0;
-  padding: 12px 16px;
+  padding: var(--spacing-3) var(--spacing-4);
   border-radius: var(--radius-element);
   background: var(--color-background-card);
   overflow-x: auto;
 }
 .demo-brand {
   display: grid;
-  gap: 2px;
-  padding: 4px 8px;
+  gap: var(--spacing-0-5);
+  padding: var(--spacing-1) var(--spacing-2);
 }
 .demo-section {
   display: grid;
-  gap: 16px;
+  gap: var(--spacing-4);
 }
 .demo-section-head {
   display: grid;
-  gap: 4px;
-  padding-bottom: 12px;
+  gap: var(--spacing-1);
+  padding-bottom: var(--spacing-3);
   border-bottom: 1px solid var(--color-border);
 }
 .demo-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: var(--spacing-3);
   align-items: center;
 }
 .demo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 12px;
+  gap: var(--spacing-3);
 }
 .demo-form {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px 24px;
+  gap: var(--spacing-4) var(--spacing-6);
   align-items: start;
 }
 .demo-stack {
   display: grid;
-  gap: 8px;
+  gap: var(--spacing-2);
 }
 
 /* ---- Colour samples ---- */
 .demo-swatches {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
+  gap: var(--spacing-3);
 }
 .demo-swatch {
   display: grid;
-  gap: 8px;
+  gap: var(--spacing-2);
 }
 .demo-swatch-chip {
   height: 56px;
@@ -92,17 +92,17 @@ html {
   box-shadow: inset 0 0 0 1px var(--color-border);
   display: flex;
   align-items: center;
-  padding-inline: 14px;
-  font: 500 22px / 1 var(--font-family-heading);
+  padding-inline: var(--spacing-3);
+  font: var(--font-weight-medium) var(--text-heading-2-size) / 1 var(--font-family-heading);
 }
 .demo-swatch-meta {
   display: grid;
-  gap: 2px;
+  gap: var(--spacing-0-5);
 }
 .demo-data-row {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  gap: 6px;
+  gap: var(--spacing-1-5);
 }
 .demo-data-chip {
   height: 40px;
@@ -111,7 +111,7 @@ html {
 .demo-ramps {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
+  gap: var(--spacing-2);
 }
 .demo-ramp {
   display: grid;
@@ -123,8 +123,8 @@ html {
 
 @media (max-width: 720px) {
   .demo-page {
-    padding: 24px 16px 64px;
-    gap: 40px;
+    padding: var(--spacing-6) var(--spacing-4) calc(var(--spacing-8) * 2);
+    gap: var(--spacing-10);
   }
   .demo-data-row {
     grid-template-columns: repeat(5, 1fr);
@@ -155,7 +155,7 @@ html {
 }
 .banner-stack {
   display: grid;
-  gap: 12px;
+  gap: var(--spacing-3);
 }
 .banner-code pre {
   margin: 0;
@@ -164,16 +164,16 @@ html {
 .banner-badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--spacing-2);
 }
 .banner-table {
   display: grid;
-  gap: 10px;
+  gap: var(--spacing-2);
 }
 .banner-table-row {
   display: grid;
   grid-template-columns: 1fr auto auto;
-  gap: 16px;
+  gap: var(--spacing-4);
   align-items: center;
 }
 .banner-title {
@@ -182,7 +182,176 @@ html {
   display: grid;
   place-content: center;
   justify-items: center;
-  gap: 10px;
+  gap: var(--spacing-2);
   pointer-events: none;
 }
 
+
+/* ---- Charts ---- */
+.chart {
+  /* The surface a chart sits on: the card veil over the body. Dots take a ring
+     of exactly this colour so they stay legible where lines cross. */
+  --chart-surface: color-mix(in srgb, #ffffff 3%, var(--color-background-body));
+  margin: 0;
+  display: grid;
+  gap: var(--spacing-3);
+}
+.chart figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2) var(--spacing-4);
+}
+.chart-plot {
+  position: relative;
+}
+.chart-plot svg {
+  display: block;
+  overflow: visible;
+}
+.chart-plot svg:focus-visible,
+.chart-hit:focus-visible,
+.chart-cell:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.chart-grid {
+  stroke: var(--color-border);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.chart-crosshair {
+  stroke: var(--color-text-disabled);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.chart-tick,
+.chart-end-label {
+  fill: var(--color-text-secondary);
+  font: var(--font-weight-normal) var(--font-size-sm) var(--font-family-body);
+}
+.chart-value {
+  fill: var(--color-text-primary);
+  font: var(--font-weight-medium) var(--font-size-sm) var(--font-family-body);
+}
+.chart-line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.chart-dot {
+  stroke: var(--chart-surface);
+  stroke-width: 4; /* drawn under the fill: a 2px ring outside an 8px dot */
+  paint-order: stroke;
+}
+.chart-hit {
+  outline: none;
+}
+.chart-mark {
+  transition: filter var(--duration-fast) var(--ease-standard);
+}
+.chart-mark.is-hover {
+  filter: brightness(1.2);
+}
+.chart-cell.is-hover {
+  stroke: var(--color-text-primary);
+  stroke-width: 1.5;
+}
+.chart-tooltip {
+  position: absolute;
+  top: var(--spacing-2);
+  transform: translateX(var(--spacing-3));
+  display: grid;
+  gap: var(--spacing-0-5);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-element);
+  background: var(--color-background-popover);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  color: var(--color-text-secondary);
+  font: var(--font-weight-normal) var(--font-size-sm) / 1.4 var(--font-family-body);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.chart-tooltip.is-flipped {
+  transform: translateX(calc(-100% - var(--spacing-3)));
+}
+.chart-tooltip strong {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+.chart-tooltip-title {
+  color: var(--color-text-primary);
+}
+.chart-tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1-5);
+}
+.chart-key-line {
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+}
+.chart-scale {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+.chart-scale span:not(.astryx-text) {
+  flex-shrink: 0;
+  width: 16px;
+  height: 10px;
+  border-radius: 2px;
+}
+.chart-scale .astryx-text {
+  white-space: nowrap;
+}
+.chart-table summary {
+  cursor: pointer;
+  width: fit-content;
+  color: var(--color-text-secondary);
+}
+.chart-table summary::marker {
+  color: var(--color-text-secondary);
+}
+.chart-table[open] summary {
+  margin-bottom: var(--spacing-2);
+}
+.demo-charts {
+  display: grid;
+  gap: var(--spacing-3);
+}
+.demo-data-slot {
+  display: grid;
+  gap: var(--spacing-1);
+}
+.demo-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-3);
+}
+/* A chart measures its container to draw at that width; letting grid items
+   shrink below their content stops the SVG from widening its own track and
+   re-measuring forever. */
+.demo-grid-2 > *,
+.chart,
+.chart-plot {
+  min-width: 0;
+}

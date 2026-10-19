@@ -129,6 +129,32 @@ export const obsidianTheme = defineTheme({
     // Dark text on the orange: 5.6:1. White on it was 3.5:1.
     '--color-on-warning': '#0D0E10',
 
+    // ---- Chart colors ----
+    // Astryx's categorical defaults fail on this body: orange and pink sit
+    // above the dark lightness band, and pink↔cyan collapse under protanopia
+    // (ΔE 5.7). Each slot keeps Astryx's hue; lightness and chroma are fitted
+    // by scripts/fit-data-palette.mjs. In this order, neighbours stay ≥ 14 ΔE
+    // apart for protan and deutan readers and ≥ 23 for everyone, and every
+    // colour reaches 3:1 on the body and on a card. Use them in this order.
+    '--color-data-categorical-blue': '#0A72E2',
+    '--color-data-categorical-orange': '#E36A00',
+    '--color-data-categorical-purple': '#6D25FF',
+    '--color-data-categorical-green': '#0E9920',
+    '--color-data-categorical-pink': '#B32C8B',
+    '--color-data-categorical-cyan': '#0D9CE0',
+    '--color-data-categorical-red': '#FE2A4B',
+    '--color-data-categorical-teal': '#07A4A4',
+    '--color-data-categorical-brown': '#965D01',
+    '--color-data-categorical-indigo': '#6C87FC',
+    // Sequential ramps keep Astryx's steps except where they fail on this
+    // body: the darkest blue, purple and gray steps vanished into it (1.2–1.6:1)
+    // and now reach 2:1; the two lightest yellows were 0.03 apart in lightness.
+    '--color-data-blue-5': '#21408A',
+    '--color-data-purple-5': '#4C25AC',
+    '--color-data-gray-5': '#444449',
+    '--color-data-yellow-2': '#F1E17A',
+    '--color-data-yellow-3': '#F1C506',
+
     // ---- Type floor ----
     // The 1.25 scale from 14px runs down to 5px. Nothing below 10px, and the
     // smallest heading step stays at 11px.

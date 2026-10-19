@@ -17,8 +17,12 @@ import { resolveThemeTokens } from '@astryxdesign/core/theme/tokens'
 const probe = defineTheme({ name: 'obsidian-probe', tokens: {} })
 const light = resolveThemeTokens(probe, { mode: 'light' })
 const dark = resolveThemeTokens(probe, { mode: 'dark' })
+// Every colour that changes with the mode, plus every data colour: Astryx 0.7
+// keeps its chart defaults in a StyleX group and only emits the data tokens a
+// theme sets, so without these a chart reading var(--color-data-blue-3) gets
+// nothing at all.
 const keys = Object.keys(dark)
-  .filter((k) => k.startsWith('--color-') && light[k] !== dark[k])
+  .filter((k) => k.startsWith('--color-') && (light[k] !== dark[k] || k.startsWith('--color-data-')))
   .sort()
 
 for (const k of keys) {
@@ -36,8 +40,8 @@ writeFileSync(
  * Do not edit by hand — rerun the script after upgrading Core.
  *
  * Astryx's dark value for every color token that differs between light and
- * dark mode. The theme spreads these first and overrides the ones it designs,
- * so no color is left to follow the system preference.
+ * dark mode, and for every data color (Astryx only emits the ones a theme
+ * sets). The theme spreads these first and overrides the ones it designs.
  */
 export const darkDefaults = {
 ${body}

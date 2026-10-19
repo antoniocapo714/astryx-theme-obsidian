@@ -10,11 +10,11 @@
 </p>
 
 <p align="center">
-  <b>Version 0.1</b> · Built on <a href="https://github.com/facebook/astryx">Astryx 0.7</a> and <a href="https://react.dev">React 19+</a>
+  <b>Version 0.2</b> · Built on <a href="https://github.com/facebook/astryx">Astryx 0.7</a> and <a href="https://react.dev">React 19+</a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-0.1.0-2D72D2?labelColor=1A1D21" alt="Version 0.1.0">
+  <img src="https://img.shields.io/badge/version-0.2.0-2D72D2?labelColor=1A1D21" alt="Version 0.2.0">
   <img src="https://img.shields.io/badge/license-MIT-238551?labelColor=1A1D21" alt="MIT licence">
   <img src="https://img.shields.io/badge/astryx-0.7-8A8F98?labelColor=1A1D21" alt="Astryx 0.7">
   <img src="https://img.shields.io/badge/WCAG_2.2-AA_tested-6FA6E8?labelColor=1A1D21" alt="WCAG 2.2 AA, tested">
@@ -27,6 +27,7 @@
 <p align="center">
   <a href="https://antoniocapo714.github.io/astryx-theme-obsidian/"><b>Live demo</b></a> ·
   <a href="#getting-started"><b>Getting started</b></a> ·
+  <a href="#data-visualization"><b>Data visualization</b></a> ·
   <a href="#customize"><b>Customize</b></a> ·
   <a href="CHANGELOG.md"><b>Changelog</b></a>
 </p>
@@ -43,6 +44,7 @@ The [live demo](https://antoniocapo714.github.io/astryx-theme-obsidian/) shows e
 - **Brightness is the hierarchy.** Text comes in four steps, and the brightest is kept for the values and titles that matter. Hover and selection change brightness and veil together, with no coloured bars or accent tints.
 - **Dark only, for real.** Every color is a single value, including the ones it inherits from Astryx, so nothing turns light when the system preference is light.
 - **Accessible by contract.** Text reaches 4.5:1 on every surface, and the edge of every control reaches 3:1. A test suite enforces both, so a change that breaks them fails.
+- **Charts that work in the dark.** Astryx's chart colors are refitted for a near-black surface and tested for colour-blind readers, with reference charts to copy.
 
 ![The showcase: the side navigation is the page's own table of contents](docs/screenshot.png)
 
@@ -127,7 +129,40 @@ Contrast ratios are measured against the body (`#08090A`), a card and a popover.
 | Error | `#CD4246` | `#FFFFFF` | 4.7 |
 | Warning | `#C87619` | `#0D0E10` | 5.6 |
 
-The chart colors (`--color-data-*`) are Astryx's dark defaults in this version.
+## Data visualization
+
+Astryx ships chart colors but no charts, and its default chart colors fail on a near-black body: orange and pink are too light for a dark surface, and pink and cyan become the same color for protanopic readers. Obsidian refits them and publishes all 56 data tokens, because Astryx 0.7 only emits the ones a theme sets.
+
+**Categorical**, used in this order. Each keeps Astryx's hue; lightness and chroma are fitted by `scripts/fit-data-palette.mjs`.
+
+| # | Token | Value |
+|---|---|---|
+| 1 | `--color-data-categorical-blue` | `#0A72E2` |
+| 2 | `--color-data-categorical-orange` | `#E36A00` |
+| 3 | `--color-data-categorical-purple` | `#6D25FF` |
+| 4 | `--color-data-categorical-green` | `#0E9920` |
+| 5 | `--color-data-categorical-pink` | `#B32C8B` |
+| 6 | `--color-data-categorical-cyan` | `#0D9CE0` |
+| 7 | `--color-data-categorical-red` | `#FE2A4B` |
+| 8 | `--color-data-categorical-teal` | `#07A4A4` |
+| 9 | `--color-data-categorical-brown` | `#965D01` |
+| 10 | `--color-data-categorical-indigo` | `#6C87FC` |
+
+In that order, neighbours stay at least ΔE 14 apart for protanopic and deuteranopic readers (OKLab ×100, Machado 2009 simulation) and 23 apart for everyone, and every color reaches 3:1 on the body and on a card. Past eight series, fold the rest into "Other" rather than reaching for the ninth and tenth.
+
+**Sequential ramps** (`--color-data-<hue>-1` to `-5`, for blue, shamrock, orange, pink, purple, red, teal, yellow and gray) step from light to dark with a visible gap between steps. On this dark surface the anchor flips: step 5, the darkest, means *least*, and it still reaches 2:1 so it never disappears. Four of Astryx's steps were adjusted to get there.
+
+**Charts.** The [demo](https://antoniocapo714.github.io/astryx-theme-obsidian/#data) draws a line chart, a column chart and a heatmap in plain SVG against these tokens, so any chart library can copy the same decisions:
+
+- marks carry the data colors; every word uses the text tokens;
+- columns at most 24 px wide with a 4 px rounded end, square at the baseline;
+- 2 px lines, 8 px end dots ringed in the surface color;
+- hairline gridlines in `--color-border`;
+- a legend whenever there are two or more series, plus direct labels at the line ends;
+- a tooltip on hover and on keyboard focus, with the value first;
+- a table behind every chart.
+
+To feed the colors to D3, Vega or another JavaScript library, read them with Astryx's `useTheme()` hook. `test/dataviz.test.ts` checks the palette.
 
 ## Typography
 
@@ -173,7 +208,7 @@ Build it with `npx astryx theme build`. If you change a color, check it against 
 bun install
 bun run build         # themes/obsidian/obsidianTheme.ts → obsidian.css / .js / .d.ts
 bun run demo          # the showcase at http://localhost:5173
-bun run test          # contrast and token tests
+bun run test          # contrast, token and chart-color tests
 npx playwright test   # the theme as the browser renders it
 ```
 
