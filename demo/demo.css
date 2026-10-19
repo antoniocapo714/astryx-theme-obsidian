@@ -1,0 +1,14 @@
+/* Imported as CSS, not from JS: a bundler may drop a side-effect CSS import
+   from a JS module, and the theme would silently not load. */
+@import '../themes/obsidian/obsidian.fonts.css';
+@import '../themes/obsidian/obsidian.css';
+
+html, body, #root { height: 100%; margin: 0; }
+body { background: var(--color-background-body); }
+
+.demo-page { display: grid; gap: 32px; padding: 32px; max-width: 1080px; }
+.demo-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.demo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.demo-form { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px 24px; align-items: start; }
+.demo-stack { display: grid; gap: 8px; }
+.demo-section { display: grid; gap: 12px; }

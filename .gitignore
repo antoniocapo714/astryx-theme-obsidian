@@ -1,0 +1,7 @@
+node_modules/
+demo/dist/
+# Local-only comparison themes for before/after screenshots. Never published.
+demo/.compare/
+test-results/
+playwright-report/
+*.tgz

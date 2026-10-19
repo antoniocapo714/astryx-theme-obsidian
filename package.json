@@ -1,0 +1,76 @@
+{
+  "name": "astryx-theme-obsidian",
+  "version": "0.1.0",
+  "description": "A dark-only theme for the Astryx design system: near-black surfaces, depth by light instead of shadow, and a four-step brightness hierarchy.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "astryx",
+    "astryx-theme",
+    "theme",
+    "dark-theme",
+    "design-tokens"
+  ],
+  "homepage": "https://github.com/antoniocapo714/astryx-theme-obsidian#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antoniocapo714/astryx-theme-obsidian.git"
+  },
+  "bugs": {
+    "url": "https://github.com/antoniocapo714/astryx-theme-obsidian/issues"
+  },
+  "files": [
+    "themes",
+    "astryx-docs",
+    "astryx.integration.mjs",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "exports": {
+    "./themes/obsidian": "./themes/obsidian/obsidian.js",
+    "./themes/obsidian.css": "./themes/obsidian/obsidian.css",
+    "./themes/obsidian.fonts.css": "./themes/obsidian/obsidian.fonts.css"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "bake": "node scripts/bake-dark-defaults.mjs",
+    "build": "astryx theme build themes/obsidian/obsidianTheme.ts --out themes/obsidian/obsidian.css",
+    "demo": "vite demo",
+    "test": "vitest run",
+    "check": "tsc --noEmit && vitest run && astryx integration verify"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
+    "@fontsource/space-mono": "^5.3.0"
+  },
+  "peerDependencies": {
+    "@astryxdesign/core": ">=0.7.1 <0.8.0",
+    "@astryxdesign/cli": ">=0.7.0"
+  },
+  "peerDependenciesMeta": {
+    "@astryxdesign/cli": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@astryxdesign/cli": "0.7.1",
+    "@astryxdesign/theme-gothic": "0.7.1",
+    "@fontsource/space-grotesk": "^5.3.0",
+    "@playwright/test": "1.61.1",
+    "@stylexjs/stylex": "^0.19.0",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.0.3",
+    "lightningcss": "^1.33.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "typescript": "~6.0.2",
+    "vite": "^8.1.1",
+    "vitest": "^4.1.10"
+  }
+}

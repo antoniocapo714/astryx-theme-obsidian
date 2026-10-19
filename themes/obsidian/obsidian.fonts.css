@@ -1,0 +1,12 @@
+/*
+ * Font loader for the Obsidian theme. `astryx theme add` imports it with the
+ * built theme; import it yourself if you wire the theme by hand.
+ *
+ * Self-hosted through Fontsource, so no request leaves your origin.
+ * Inter and Space Grotesk are the variable faces: the theme uses weight 510,
+ * which static files cannot render.
+ */
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource/space-mono/400.css';
+@import '@fontsource/space-mono/700.css';
