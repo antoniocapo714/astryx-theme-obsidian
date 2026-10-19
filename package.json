@@ -11,13 +11,13 @@
     "dark-theme",
     "design-tokens"
   ],
-  "homepage": "https://github.com/Creative-Context/astryx-theme-obsidian#readme",
+  "homepage": "https://github.com/creative-context/astryx-theme-obsidian#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Creative-Context/astryx-theme-obsidian.git"
+    "url": "git+https://github.com/creative-context/astryx-theme-obsidian.git"
   },
   "bugs": {
-    "url": "https://github.com/Creative-Context/astryx-theme-obsidian/issues"
+    "url": "https://github.com/creative-context/astryx-theme-obsidian/issues"
   },
   "files": [
     "themes",

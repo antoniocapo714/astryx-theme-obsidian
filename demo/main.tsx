@@ -49,7 +49,7 @@ const requested = new URLSearchParams(location.search).get('theme') ?? 'obsidian
 const active = themes[requested] ? requested : 'obsidian';
 const view = new URLSearchParams(location.search).get('view');
 
-const REPO = 'https://github.com/Creative-Context/astryx-theme-obsidian';
+const REPO = 'https://github.com/creative-context/astryx-theme-obsidian';
 
 const SECTIONS = [
   {group: 'Foundations', id: 'colors', label: 'Colors'},
@@ -198,7 +198,7 @@ function Showcase() {
             wearing the theme.
           </Text>
           <pre className="demo-install">
-            <Text type="code">npm install github:Creative-Context/astryx-theme-obsidian</Text>
+            <Text type="code">npm install github:creative-context/astryx-theme-obsidian</Text>
           </pre>
           <div className="demo-row">
             <Button label="View on GitHub" variant="primary" href={REPO} />
