@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/banner.png" alt="Obsidian: an app window built from Astryx components in the theme, with side navigation, a column chart and a status table" width="100%">
+  <img src="docs/banner.png" alt="Obsidian: a dense, data-heavy screen built from Astryx components in the theme, with figures, a three-series chart and a status table" width="100%">
 </p>
 
 <h1 align="center">Obsidian</h1>
