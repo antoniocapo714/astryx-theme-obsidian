@@ -25,7 +25,8 @@
     "astryx.integration.mjs",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "llms.txt"
   ],
   "exports": {
     "./themes/obsidian": "./themes/obsidian/obsidian.js",

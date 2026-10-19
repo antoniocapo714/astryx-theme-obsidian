@@ -1,0 +1,26 @@
+# Obsidian — a dark-only theme for Astryx
+
+> Obsidian restyles the Astryx design system (Meta's open source React design system) for dense, data-heavy interfaces: near-black surfaces, depth by light instead of shadow, a four-step brightness hierarchy, and chart colours fitted for a dark surface. It changes how Astryx components look, not how they are used.
+
+## Install and apply
+
+- Install: `npm install github:antoniocapo714/astryx-theme-obsidian`, then `npx astryx theme add obsidian --package astryx-theme-obsidian`.
+- Apply from the generated module: `<Theme theme={themes.obsidian} mode="dark">`. Always pass `mode="dark"`; the theme is dark-only.
+- Requires `@astryxdesign/core` 0.7 and React 19.
+- Production CSS must keep `@scope` rules: in Vite set `build.cssMinify: 'lightningcss'`. esbuild drops them silently and the theme disappears in production.
+- Without `AppShell`, set `body { background: var(--color-background-body) }`.
+- Manual wiring: import `astryx-theme-obsidian/themes/obsidian` plus `themes/obsidian.css` and `themes/obsidian.fonts.css`.
+
+## Using it well
+
+- Use Astryx components and tokens as usual; do not hard-code colours. Surfaces: `--color-background-body`, `-surface`, `-card` (a 3% white veil), `-popover`. Text: `--color-text-primary`, `-secondary`, `-accent`.
+- Control edges use `--color-border-emphasized` (3:1). `--color-border` is a faint divider — never the only edge of something a user must find.
+- Spacing: `--spacing-*` tokens (rem). Radii: `--radius-inner` 4px, `--radius-element` 6px, `--radius-container` / `--radius-page` 8px, `--radius-full` round.
+- Charts: use `--color-data-categorical-*` in this order — blue, orange, purple, green, pink, cyan, red, teal (then brown, indigo); fold more than eight series into "Other". Sequential ramps `--color-data-<hue>-1..5`: on this dark surface step 5 (darkest) means least. Labels, values and legends use text tokens, never the data colour. For JavaScript chart libraries read values with Astryx's `useTheme()`.
+- Customise with `defineTheme({extends: obsidianTheme, ...})`, not by copying the source.
+
+## Links
+
+- README: https://github.com/antoniocapo714/astryx-theme-obsidian#readme
+- Live showcase: https://antoniocapo714.github.io/astryx-theme-obsidian/
+- Map companion: https://github.com/antoniocapo714/obsidian-map-style
