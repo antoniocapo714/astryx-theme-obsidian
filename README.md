@@ -26,6 +26,16 @@ import {themes} from './astryx-themes';
 </Theme>
 ```
 
+### Page background
+
+`AppShell` paints the page background. If a page doesn't use it, the browser's default dark grey shows around your content. Set it yourself:
+
+```css
+body {
+  background: var(--color-background-body);
+}
+```
+
 ### Wiring it by hand
 
 ```tsx
