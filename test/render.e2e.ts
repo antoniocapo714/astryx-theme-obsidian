@@ -50,7 +50,8 @@ test('the theme reaches the screen', async ({ page }) => {
 
 test('README images', async ({ browser }) => {
   test.skip(!process.env.SCREENSHOTS, 'set SCREENSHOTS=1 to refresh docs/*.png')
-  const page = await browser.newPage({ viewport: { width: 1280, height: 640 }, deviceScaleFactor: 2 })
+  // The banner is drawn at the size GitHub shows it (880 wide), at 3× for retina.
+  const page = await browser.newPage({ viewport: { width: 880, height: 440 }, deviceScaleFactor: 3 })
   await page.goto('/?view=banner')
   await page.evaluate(() => document.fonts.ready)
   await page.waitForTimeout(300)

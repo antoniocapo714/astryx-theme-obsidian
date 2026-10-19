@@ -134,8 +134,8 @@ html {
 /* ---- README banner (?view=banner) ---- */
 .banner-frame {
   position: relative;
-  width: 1280px;
-  height: 640px;
+  width: 880px;
+  height: 440px;
   overflow: hidden;
   background: var(--obsidian-canvas, #050506);
 }
@@ -143,7 +143,7 @@ html {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 46% 40% at 50% 50%, rgba(45, 114, 210, 0.22), transparent 70%),
+    radial-gradient(ellipse 40% 42% at 50% 50%, rgba(45, 114, 210, 0.2), transparent 70%),
     radial-gradient(ellipse 80% 70% at 50% 50%, rgba(255, 255, 255, 0.035), transparent 75%);
 }
 .banner-card {
@@ -157,10 +157,6 @@ html {
   display: grid;
   gap: var(--spacing-3);
 }
-.banner-code pre {
-  margin: 0;
-  white-space: pre;
-}
 .banner-badges {
   display: flex;
   flex-wrap: wrap;
@@ -168,13 +164,13 @@ html {
 }
 .banner-table {
   display: grid;
-  gap: var(--spacing-2);
+  gap: var(--spacing-3);
 }
 .banner-table-row {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: var(--spacing-4);
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
 }
 .banner-title {
   position: absolute;
@@ -183,9 +179,9 @@ html {
   place-content: center;
   justify-items: center;
   gap: var(--spacing-2);
+  text-align: center;
   pointer-events: none;
 }
-
 
 /* ---- Charts ---- */
 .chart {
@@ -354,4 +350,8 @@ html {
 .chart,
 .chart-plot {
   min-width: 0;
+}
+/* The tagline sits between the cards, so it wraps to stay clear of them. */
+.banner-title .astryx-text {
+  max-width: 290px;
 }
