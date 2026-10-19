@@ -2,5 +2,5 @@
 export default {
   themes: './themes',
   docs: './astryx-docs',
-  issuesUrl: 'https://github.com/antoniocapo714/astryx-theme-obsidian/issues',
+  issuesUrl: 'https://github.com/Creative-Context/astryx-theme-obsidian/issues',
 };

@@ -21,11 +21,11 @@
 </p>
 
 <p align="center">
-  <a href="https://antoniocapo714.github.io/astryx-theme-obsidian/"><img src="https://img.shields.io/badge/Demo-live-2D72D2?labelColor=1A1D21" alt="Live demo"></a>
+  <a href="https://creative-context.github.io/astryx-theme-obsidian/"><img src="https://img.shields.io/badge/Demo-live-2D72D2?labelColor=1A1D21" alt="Live demo"></a>
 </p>
 
 <p align="center">
-  <a href="https://antoniocapo714.github.io/astryx-theme-obsidian/"><b>Live demo</b></a> ·
+  <a href="https://creative-context.github.io/astryx-theme-obsidian/"><b>Live demo</b></a> ·
   <a href="#getting-started"><b>Getting started</b></a> ·
   <a href="#data-visualization"><b>Data visualization</b></a> ·
   <a href="#customize"><b>Customize</b></a> ·
@@ -37,7 +37,7 @@
 
 Obsidian is a theme for Astryx, Meta's open source design system. It changes nothing in how you build: the same components, the same props, the same CLI. It changes how they look: near-black surfaces, depth made of light, and a strict brightness hierarchy that keeps dense screens readable.
 
-The [live demo](https://antoniocapo714.github.io/astryx-theme-obsidian/) shows every part of it on real Astryx components.
+The [live demo](https://creative-context.github.io/astryx-theme-obsidian/) shows every part of it on real Astryx components.
 
 **What makes Obsidian different:**
 
@@ -56,7 +56,7 @@ The [live demo](https://antoniocapo714.github.io/astryx-theme-obsidian/) shows e
 Obsidian needs `@astryxdesign/core` 0.7 and React 19 or later. It is installed straight from this repository; it is not on the npm registry.
 
 ```bash
-npm install github:antoniocapo714/astryx-theme-obsidian
+npm install github:Creative-Context/astryx-theme-obsidian
 npx astryx theme add obsidian --package astryx-theme-obsidian
 ```
 
@@ -113,7 +113,7 @@ import 'astryx-theme-obsidian/themes/obsidian.css';
 
 Two files tell an AI assistant how to work with Obsidian:
 
-- **[`llms.txt`](llms.txt)** is for an assistant building an app *with* the theme: how to install and apply it, the rules that matter (`mode="dark"`, Lightning CSS, the order of the chart colours), and which tokens to use. It ships in the package and is also published at [`/llms.txt`](https://antoniocapo714.github.io/astryx-theme-obsidian/llms.txt) on the showcase.
+- **[`llms.txt`](llms.txt)** is for an assistant building an app *with* the theme: how to install and apply it, the rules that matter (`mode="dark"`, Lightning CSS, the order of the chart colours), and which tokens to use. It ships in the package and is also published at [`/llms.txt`](https://creative-context.github.io/astryx-theme-obsidian/llms.txt) on the showcase.
 - **[`AGENTS.md`](AGENTS.md)** is for an assistant working *on* this repository: the layout, which files are generated and must not be edited by hand, the commands, and the rule that the contrast tests are the contract. `CLAUDE.md` imports it.
 
 Inside an Astryx app, an assistant can also read the theme's own doc topic with `npx astryx docs theme`.
@@ -163,7 +163,7 @@ In that order, neighbours stay at least ΔE 14 apart for protanopic and deuteran
 
 **Sequential ramps** (`--color-data-<hue>-1` to `-5`, for blue, shamrock, orange, pink, purple, red, teal, yellow and gray) step from light to dark with a visible gap between steps. On this dark surface the anchor flips: step 5, the darkest, means *least*, and it still reaches 2:1 so it never disappears. Four of Astryx's steps were adjusted to get there.
 
-**Charts.** The [demo](https://antoniocapo714.github.io/astryx-theme-obsidian/#data) draws a line chart, a column chart and a heatmap in plain SVG against these tokens, so any chart library can copy the same decisions:
+**Charts.** The [demo](https://creative-context.github.io/astryx-theme-obsidian/#data) draws a line chart, a column chart and a heatmap in plain SVG against these tokens, so any chart library can copy the same decisions:
 
 - marks carry the data colors; every word uses the text tokens;
 - columns at most 24 px wide with a 4 px rounded end, square at the baseline;
