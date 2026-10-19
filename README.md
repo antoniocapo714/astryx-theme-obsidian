@@ -1,19 +1,61 @@
-# Obsidian
+<p align="center">
+  <img src="docs/banner.png" alt="Obsidian: real Astryx components wearing the theme, arranged around the wordmark" width="100%">
+</p>
 
-A dark-only theme for [Astryx](https://github.com/facebook/astryx), built for dense, data-heavy interfaces. Depth comes from light instead of shadow, and brightness carries the hierarchy.
+<h1 align="center">Obsidian</h1>
 
-![The Obsidian theme: side navigation, type scale, buttons and cards](docs/screenshot.png)
+<p align="center">
+  A dark-only theme for the <a href="https://github.com/facebook/astryx">Astryx</a> design system,<br>
+  built for dense, data-heavy interfaces.
+</p>
 
-![Form controls, status banners, badges and a table in Obsidian](docs/screenshot-controls.png)
+<p align="center">
+  <b>Version 0.1</b> · Built on <a href="https://github.com/facebook/astryx">Astryx 0.7</a> and <a href="https://react.dev">React 19+</a>
+</p>
 
-## Install
+<p align="center">
+  <img src="https://img.shields.io/badge/version-0.1.0-2D72D2?labelColor=1A1D21" alt="Version 0.1.0">
+  <img src="https://img.shields.io/badge/license-MIT-238551?labelColor=1A1D21" alt="MIT licence">
+  <img src="https://img.shields.io/badge/astryx-0.7-8A8F98?labelColor=1A1D21" alt="Astryx 0.7">
+  <img src="https://img.shields.io/badge/WCAG_2.2-AA_tested-6FA6E8?labelColor=1A1D21" alt="WCAG 2.2 AA, tested">
+</p>
+
+<p align="center">
+  <a href="https://antoniocapo714.github.io/astryx-theme-obsidian/"><img src="https://img.shields.io/badge/Demo-live-2D72D2?labelColor=1A1D21" alt="Live demo"></a>
+</p>
+
+<p align="center">
+  <a href="https://antoniocapo714.github.io/astryx-theme-obsidian/"><b>Live demo</b></a> ·
+  <a href="#getting-started"><b>Getting started</b></a> ·
+  <a href="#customize"><b>Customize</b></a> ·
+  <a href="CHANGELOG.md"><b>Changelog</b></a>
+</p>
+
+## Overview
+
+Obsidian is a theme for Astryx, Meta's open source design system. It changes nothing in how you build: the same components, the same props, the same CLI. It changes how they look: near-black surfaces, depth made of light, and a strict brightness hierarchy that keeps dense screens readable.
+
+The [live demo](https://antoniocapo714.github.io/astryx-theme-obsidian/) shows every part of it on real Astryx components.
+
+**What makes Obsidian different:**
+
+- **Depth by light, not shadow.** Surfaces are translucent white veils over a near-black body, and each step up is a little more light: 2% for muted wells, 3% for cards, 4% on hover, 6% when selected. Cards never cast a shadow.
+- **Brightness is the hierarchy.** Text comes in four steps, and the brightest is kept for the values and titles that matter. Hover and selection change brightness and veil together, with no coloured bars or accent tints.
+- **Dark only, for real.** Every color is a single value, including the ones it inherits from Astryx, so nothing turns light when the system preference is light.
+- **Accessible by contract.** Text reaches 4.5:1 on every surface, and the edge of every control reaches 3:1. A test suite enforces both, so a change that breaks them fails.
+
+![The showcase: the side navigation is the page's own table of contents](docs/screenshot.png)
+
+![Form controls, status and the table in Obsidian](docs/screenshot-controls.png)
+
+## Getting started
+
+Obsidian needs `@astryxdesign/core` 0.7 and React 19 or later. It is installed straight from this repository; it is not on the npm registry.
 
 ```bash
 npm install github:antoniocapo714/astryx-theme-obsidian
 npx astryx theme add obsidian --package astryx-theme-obsidian
 ```
-
-The package is installed straight from this repository; it is not on the npm registry.
 
 `theme add` writes the imports for the built theme, its stylesheet and its fonts into your generated theme module. Apply it with `mode="dark"`:
 
@@ -25,6 +67,19 @@ import {themes} from './astryx-themes';
   <App />
 </Theme>
 ```
+
+### Keep `@scope` in your production build
+
+The theme ships as CSS `@scope` rules. esbuild, Vite's default CSS minifier, removes them without a warning, so the theme works in development and disappears in production. Use Lightning CSS:
+
+```ts
+// vite.config.ts
+export default defineConfig({
+  build: {cssMinify: 'lightningcss', cssTarget: ['chrome118', 'safari17', 'firefox128']},
+});
+```
+
+`@scope` needs Chrome 118, Safari 17.4 or Firefox 128 or later.
 
 ### Page background
 
@@ -38,6 +93,8 @@ body {
 
 ### Wiring it by hand
 
+Without the CLI, import the built theme and its two stylesheets:
+
 ```tsx
 import {Theme} from '@astryxdesign/core/theme';
 import {obsidianTheme} from 'astryx-theme-obsidian/themes/obsidian';
@@ -49,35 +106,9 @@ import 'astryx-theme-obsidian/themes/obsidian.css';
 </Theme>
 ```
 
-## Requirements
-
-- `@astryxdesign/core` 0.7.x and React 19.
-- A browser with CSS `@scope`: Chrome 118, Safari 17.4, Firefox 128 or later.
-- **A CSS minifier that keeps `@scope`.** esbuild, Vite's default, removes `@scope` rules without a warning, and the theme disappears from your production build while working fine in development. Use Lightning CSS:
-
-  ```ts
-  // vite.config.ts
-  export default defineConfig({
-    build: {cssMinify: 'lightningcss', cssTarget: ['chrome118', 'safari17', 'firefox128']},
-  });
-  ```
-
-## Dark only
-
-Every color in the theme is a single value. Tokens it does not design are taken from Astryx's own dark defaults, so nothing turns light when the system preference is light. Passing `mode="dark"` to `<Theme>` also makes scrollbars and native form controls match.
-
-## Design principles
-
-1. **Depth by light, not shadow.** Surfaces are translucent white veils over a near-black body. Each step up is a little more light: 2% for muted wells, 3% for cards, 4% on hover, 6% when selected, 8% when pressed. Cards never cast a shadow.
-2. **Brightness is the hierarchy.** Text comes in four steps, and the brightest is kept for the values and titles that matter.
-3. **One gesture per state.** Hover and selection change brightness and veil together. There is no coloured bar and no accent tint on a selected item.
-4. **Small, consistent radii.** 4, 6 and 8 px, and fully round where a shape should be round.
-
-The side navigation floats on a deeper canvas as a rounded, blurred panel.
-
 ## Colors
 
-Contrast ratios are measured against the body (`#08090A`), a card, and a popover. The test suite enforces them.
+Contrast ratios are measured against the body (`#08090A`), a card and a popover.
 
 | Role | Token | Value | Body | Card | Popover |
 |---|---|---|---|---|---|
@@ -96,15 +127,17 @@ Contrast ratios are measured against the body (`#08090A`), a card, and a popover
 | Error | `#CD4246` | `#FFFFFF` | 4.7 |
 | Warning | `#C87619` | `#0D0E10` | 5.6 |
 
+The chart colors (`--color-data-*`) are Astryx's dark defaults in this version.
+
 ## Typography
 
 | Role | Family | Notes |
 |---|---|---|
 | Body | Inter Variable | |
-| Headings | Space Grotesk Variable | Weight 510 with -0.02em tracking. |
+| Headings | Space Grotesk Variable | Weight 510, -0.02em tracking. |
 | Code | Space Mono | |
 
-The fonts are self-hosted through [Fontsource](https://fontsource.org) and loaded by `obsidian.fonts.css`. Inter and Space Grotesk must be the variable versions, because the theme uses weight 510; with static files the browser renders the 700 Bold instead.
+The fonts are self-hosted through [Fontsource](https://fontsource.org) and loaded by `obsidian.fonts.css`. Inter and Space Grotesk must be the variable versions: the theme uses weight 510, and with static files the browser renders the 700 Bold instead.
 
 The scale starts at 14 px with a ratio of 1.25. No size goes below 10 px, and the smallest heading is 11 px.
 
@@ -113,7 +146,7 @@ The scale starts at 14 px with a ratio of 1.25. No size goes below 10 px, and th
 - Text that carries meaning reaches 4.5:1 on every surface (WCAG 1.4.3).
 - Anything that identifies a control or its state reaches 3:1: input edges, an unchecked checkbox, a switch that is off, and the focus ring (WCAG 1.4.11).
 - Disabled text is exempt and measures 2.9–3.5:1.
-- Plain dividers (`--color-border`) stay faint on purpose. They are decoration, so don't use them as the only edge of something a user has to find.
+- Plain dividers (`--color-border`) stay faint on purpose. They are decoration, so don't make one the only edge of something a user has to find.
 
 ## Customize
 
@@ -132,19 +165,19 @@ export const myTheme = defineTheme({
 });
 ```
 
-Then build it with `npx astryx theme build`. If you change a color, check it against the tables above. `test/contrast.test.ts` shows how to measure it.
+Build it with `npx astryx theme build`. If you change a color, check it against the tables above; `test/contrast.test.ts` shows how to measure it.
 
 ## Develop
 
 ```bash
 bun install
-bun run build      # themes/obsidian/obsidianTheme.ts → obsidian.css / .js / .d.ts
-bun run demo       # specimen page at http://localhost:5173
-bun run test       # contrast and token tests
+bun run build         # themes/obsidian/obsidianTheme.ts → obsidian.css / .js / .d.ts
+bun run demo          # the showcase at http://localhost:5173
+bun run test          # contrast and token tests
 npx playwright test   # the theme as the browser renders it
 ```
 
-After upgrading `@astryxdesign/core`, run `bun run bake` to refresh `themes/obsidian/darkDefaults.ts`, then `bun run build`.
+After upgrading `@astryxdesign/core`, run `bun run bake` to refresh `themes/obsidian/darkDefaults.ts`, then `bun run build`. Every push to `main` runs the tests and publishes the showcase to GitHub Pages.
 
 ## License
 

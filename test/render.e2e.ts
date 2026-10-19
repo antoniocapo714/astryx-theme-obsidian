@@ -48,15 +48,21 @@ test('the theme reaches the screen', async ({ page }) => {
   expect(errors).toEqual([])
 })
 
-test('README screenshots', async ({ page }) => {
+test('README images', async ({ browser }) => {
   test.skip(!process.env.SCREENSHOTS, 'set SCREENSHOTS=1 to refresh docs/*.png')
-  await page.setViewportSize({ width: 1440, height: 900 })
-  await page.goto('/')
+  const page = await browser.newPage({ viewport: { width: 1280, height: 640 }, deviceScaleFactor: 2 })
+  await page.goto('/?view=banner')
   await page.evaluate(() => document.fonts.ready)
-  await page.screenshot({ path: 'docs/screenshot.png' })
-  // A viewport shot, not fullPage: the side navigation is sticky, and a
+  await page.waitForTimeout(300)
+  await page.locator('.banner-frame').screenshot({ path: 'docs/banner.png' })
+
+  const shot = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 })
+  await shot.goto('/')
+  await shot.evaluate(() => document.fonts.ready)
+  await shot.screenshot({ path: 'docs/screenshot.png' })
+  // Viewport shots, not fullPage: the side navigation is sticky, and a
   // full-page capture paints it halfway down the page.
-  await page.locator('[aria-label="Form"]').evaluate((e) => e.scrollIntoView({ block: 'start' }))
-  await page.waitForTimeout(200)
-  await page.screenshot({ path: 'docs/screenshot-controls.png' })
+  await shot.locator('#forms').evaluate((e) => e.scrollIntoView({ block: 'start' }))
+  await shot.waitForTimeout(400)
+  await shot.screenshot({ path: 'docs/screenshot-controls.png' })
 })
