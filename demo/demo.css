@@ -185,8 +185,4 @@ html {
   gap: 10px;
   pointer-events: none;
 }
-.banner-wordmark {
-  font: 510 132px / 1 var(--font-family-heading);
-  letter-spacing: -0.045em;
-  color: var(--color-text-primary);
-}
+

@@ -65,7 +65,9 @@ export function ReadmeBanner() {
       </div>
 
       <div className="banner-title">
-        <span className="banner-wordmark">obsidian</span>
+        <Heading level={1} type="display-1">
+          Obsidian
+        </Heading>
         <Text color="secondary">A dark theme for the Astryx design system</Text>
       </div>
 
