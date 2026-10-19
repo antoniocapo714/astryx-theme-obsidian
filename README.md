@@ -9,9 +9,11 @@ A dark-only theme for [Astryx](https://github.com/facebook/astryx), built for de
 ## Install
 
 ```bash
-npm install astryx-theme-obsidian
+npm install github:antoniocapo714/astryx-theme-obsidian
 npx astryx theme add obsidian --package astryx-theme-obsidian
 ```
+
+The package is installed straight from this repository; it is not on the npm registry.
 
 `theme add` writes the imports for the built theme, its stylesheet and its fonts into your generated theme module. Apply it with `mode="dark"`:
 
