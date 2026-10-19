@@ -291,7 +291,9 @@ function Showcase() {
               <Card key={label} padding={4}>
                 <div className="demo-stack">
                   <Text type="supporting">{label}</Text>
-                  <Heading level={2}>{value}</Heading>
+                  <Text size="2xl" weight="medium">
+                    {value}
+                  </Text>
                 </div>
               </Card>
             ))}
