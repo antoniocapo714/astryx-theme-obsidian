@@ -29,6 +29,7 @@
   <a href="#getting-started"><b>Getting started</b></a> ·
   <a href="#data-visualization"><b>Data visualization</b></a> ·
   <a href="#customize"><b>Customize</b></a> ·
+  <a href="#ai-assistants"><b>AI assistants</b></a> ·
   <a href="CHANGELOG.md"><b>Changelog</b></a>
 </p>
 
@@ -201,6 +202,15 @@ export const myTheme = defineTheme({
 ```
 
 Build it with `npx astryx theme build`. If you change a color, check it against the tables above; `test/contrast.test.ts` shows how to measure it.
+
+## AI assistants
+
+Two files tell an AI assistant how to work with Obsidian:
+
+- **[`llms.txt`](llms.txt)** is for an assistant building an app *with* the theme: how to install and apply it, the rules that matter (`mode="dark"`, Lightning CSS, the order of the chart colours), and which tokens to use. It ships in the package and is also published at [`/llms.txt`](https://antoniocapo714.github.io/astryx-theme-obsidian/llms.txt) on the showcase.
+- **[`AGENTS.md`](AGENTS.md)** is for an assistant working *on* this repository: the layout, which files are generated and must not be edited by hand, the commands, and the rule that the contrast tests are the contract. `CLAUDE.md` imports it.
+
+Inside an Astryx app, an assistant can also read the theme's own doc topic with `npx astryx docs theme`.
 
 ## Develop
 
