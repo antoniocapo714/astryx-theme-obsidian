@@ -56,9 +56,11 @@ The [live demo](https://creative-context.github.io/astryx-theme-obsidian/) shows
 Obsidian needs `@astryxdesign/core` 0.7 and React 19 or later. It is installed straight from this repository; it is not on the npm registry.
 
 ```bash
-npm install github:creative-context/astryx-theme-obsidian
+npm install github:creative-context/astryx-theme-obsidian#v0.2.0
 npx astryx theme add obsidian --package astryx-theme-obsidian
 ```
+
+`#v0.2.0` pins a [release](https://github.com/creative-context/astryx-theme-obsidian/releases); without it you get the tip of `main`.
 
 `theme add` writes the imports for the built theme, its stylesheet and its fonts into your generated theme module. Apply it with `mode="dark"`:
 

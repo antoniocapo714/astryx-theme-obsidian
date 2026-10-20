@@ -4,7 +4,7 @@
 
 ## Install and apply
 
-- Install: `npm install github:creative-context/astryx-theme-obsidian`, then `npx astryx theme add obsidian --package astryx-theme-obsidian`.
+- Install: `npm install github:creative-context/astryx-theme-obsidian#v0.2.0` (pin a release tag; without one you get the tip of `main`), then `npx astryx theme add obsidian --package astryx-theme-obsidian`.
 - Apply from the generated module: `<Theme theme={themes.obsidian} mode="dark">`. Always pass `mode="dark"`; the theme is dark-only.
 - Requires `@astryxdesign/core` 0.7 and React 19.
 - Production CSS must keep `@scope` rules: in Vite set `build.cssMinify: 'lightningcss'`. esbuild drops them silently and the theme disappears in production.
